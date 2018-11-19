@@ -33,17 +33,39 @@ namespace CheckMate
 
         private void button1_Click(object sender, EventArgs e)
         {
-            // compare generated checksum with supplied checksum
+            // compare and show result to user
             if (textBoxCompareWith.Text == textBoxFileChecksum.Text)
             {
                 labelResult.Text = "þ";
+                labelResult.ForeColor = Color.Green;
                 labelResultContext.Text = "Checksum comparison passed!";
+                labelResultContext.ForeColor = Color.Green;
             }
             else
             {
                 labelResult.Text = "ý";
+                labelResult.ForeColor = Color.Red;
                 labelResultContext.Text = "WARNING: Checksum Failed!";
+                labelResultContext.ForeColor = Color.Red;
             }
+        }
+
+        private void suppliedTextBoxOnClick(object sender, EventArgs e)
+        {
+            textBoxCompareWith.Text = "";
+            textBoxCompareWith.ForeColor = Color.Black;
+        }
+
+        private void textBoxGeneratedOnClick(object sender, EventArgs e)
+        {
+            textBoxFileChecksum.Text = "";
+            textBoxFileChecksum.ForeColor = Color.Black;
+        }
+
+        private void fileBrowserOnClick(object sender, EventArgs e)
+        {
+            textBoxFileBrowser.Text = "";
+            textBoxFileBrowser.ForeColor = Color.Black;
         }
     }
 }
