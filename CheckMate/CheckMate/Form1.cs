@@ -37,10 +37,12 @@ namespace CheckMate
             if (textBoxCompareWith.Text == textBoxFileChecksum.Text)
             {
                 labelResult.Text = "þ";
+                labelResultContext.Text = "Checksum comparison passed!";
             }
             else
             {
                 labelResult.Text = "ý";
+                labelResultContext.Text = "WARNING: Checksum Failed!";
             }
         }
     }
