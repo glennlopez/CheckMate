@@ -34,12 +34,26 @@ namespace CheckMate
         private void button1_Click(object sender, EventArgs e)
         {
             // compare and show result to user
-            if (textBoxCompareWith.Text == textBoxFileChecksum.Text)
+            if (textBoxCompareWith.Text == "" || textBoxFileChecksum.Text == "")
+            {
+                labelResult.Text = "o";
+                labelResult.ForeColor = Color.Gray;
+                labelResultContext.Text = "dude ... theres nothing to compare.";
+                labelResultContext.ForeColor = Color.Gray;
+            }
+            else if (textBoxCompareWith.Text == textBoxFileChecksum.Text)
             {
                 labelResult.Text = "þ";
                 labelResult.ForeColor = Color.Green;
                 labelResultContext.Text = "Checksum comparison passed!";
                 labelResultContext.ForeColor = Color.Green;
+            }
+            else if (textBoxCompareWith.Text == "" && textBoxFileChecksum.Text == "")
+            {
+                labelResult.Text = "o";
+                labelResult.ForeColor = Color.Gray;
+                labelResultContext.Text = "... why are you compairing two empty textbox areas?";
+                labelResultContext.ForeColor = Color.Gray;
             }
             else
             {
@@ -48,6 +62,7 @@ namespace CheckMate
                 labelResultContext.Text = "WARNING: Checksum Failed!";
                 labelResultContext.ForeColor = Color.Red;
             }
+            
         }
 
         private void suppliedTextBoxOnClick(object sender, EventArgs e)
@@ -66,6 +81,11 @@ namespace CheckMate
         {
             textBoxFileBrowser.Text = "";
             textBoxFileBrowser.ForeColor = Color.Black;
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+
         }
     }
 }
