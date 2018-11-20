@@ -50,25 +50,24 @@
             // 
             // textBoxFileChecksum
             // 
-            this.textBoxFileChecksum.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxFileChecksum.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.textBoxFileChecksum.Enabled = false;
+            this.textBoxFileChecksum.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxFileChecksum.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.textBoxFileChecksum.Location = new System.Drawing.Point(179, 53);
             this.textBoxFileChecksum.Name = "textBoxFileChecksum";
-            this.textBoxFileChecksum.Size = new System.Drawing.Size(651, 31);
+            this.textBoxFileChecksum.Size = new System.Drawing.Size(651, 35);
             this.textBoxFileChecksum.TabIndex = 0;
-            this.textBoxFileChecksum.Text = "Calculated checksum (from script or CheckMate)";
             this.textBoxFileChecksum.Click += new System.EventHandler(this.textBoxGeneratedOnClick);
             this.textBoxFileChecksum.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // textBoxCompareWith
             // 
-            this.textBoxCompareWith.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxCompareWith.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.textBoxCompareWith.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxCompareWith.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.textBoxCompareWith.Location = new System.Drawing.Point(179, 100);
             this.textBoxCompareWith.Name = "textBoxCompareWith";
-            this.textBoxCompareWith.Size = new System.Drawing.Size(562, 31);
+            this.textBoxCompareWith.Size = new System.Drawing.Size(562, 35);
             this.textBoxCompareWith.TabIndex = 1;
-            this.textBoxCompareWith.Text = "Checksum txt file OR text that was provided for you";
             this.textBoxCompareWith.Click += new System.EventHandler(this.suppliedTextBoxOnClick);
             // 
             // labelGeneratedChecksum
@@ -78,7 +77,7 @@
             this.labelGeneratedChecksum.Name = "labelGeneratedChecksum";
             this.labelGeneratedChecksum.Size = new System.Drawing.Size(113, 25);
             this.labelGeneratedChecksum.TabIndex = 2;
-            this.labelGeneratedChecksum.Text = "Generated";
+            this.labelGeneratedChecksum.Text = "MD5 Hash";
             this.labelGeneratedChecksum.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBoxCompare
@@ -136,9 +135,9 @@
             this.labelCompareTo.AutoSize = true;
             this.labelCompareTo.Location = new System.Drawing.Point(77, 106);
             this.labelCompareTo.Name = "labelCompareTo";
-            this.labelCompareTo.Size = new System.Drawing.Size(96, 25);
+            this.labelCompareTo.Size = new System.Drawing.Size(99, 25);
             this.labelCompareTo.TabIndex = 3;
-            this.labelCompareTo.Text = "Supplied";
+            this.labelCompareTo.Text = "Compare";
             // 
             // groupBoxFile
             // 
@@ -171,13 +170,12 @@
             // 
             // textBoxFileBrowser
             // 
-            this.textBoxFileBrowser.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.875F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxFileBrowser.ForeColor = System.Drawing.SystemColors.ActiveBorder;
+            this.textBoxFileBrowser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxFileBrowser.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.textBoxFileBrowser.Location = new System.Drawing.Point(182, 48);
             this.textBoxFileBrowser.Name = "textBoxFileBrowser";
-            this.textBoxFileBrowser.Size = new System.Drawing.Size(559, 31);
+            this.textBoxFileBrowser.Size = new System.Drawing.Size(559, 35);
             this.textBoxFileBrowser.TabIndex = 3;
-            this.textBoxFileBrowser.Text = "Path to the file you wish to generate checksum for";
             this.textBoxFileBrowser.Click += new System.EventHandler(this.fileBrowserOnClick);
             // 
             // buttonCalculateChecksum

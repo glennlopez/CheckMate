@@ -75,20 +75,20 @@ namespace CheckMate
 
         private void suppliedTextBoxOnClick(object sender, EventArgs e)
         {
-            textBoxCompareWith.Text = "";
-            textBoxCompareWith.ForeColor = Color.Black;
+            //textBoxCompareWith.Text = "";
+            //textBoxCompareWith.ForeColor = Color.Black;
         }
 
         private void textBoxGeneratedOnClick(object sender, EventArgs e)
         {
-            textBoxFileChecksum.Text = "";
-            textBoxFileChecksum.ForeColor = Color.Black;
+            //textBoxFileChecksum.Text = "";
+            //textBoxFileChecksum.ForeColor = Color.Black;
         }
 
         private void fileBrowserOnClick(object sender, EventArgs e)
         {
-            textBoxFileBrowser.Text = "";
-            textBoxFileBrowser.ForeColor = Color.Black;
+            //textBoxFileBrowser.Text = "";
+            //textBoxFileBrowser.ForeColor = Color.Black;
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
@@ -121,10 +121,23 @@ namespace CheckMate
                     while (bytesRead != 0);
 
                     MD5hasher.TransformFinalBlock(buffer, 0, 0);
-                    e.Result = MD5hasher.Hash;
+                    e.Result = MakeHashString(MD5hasher.Hash);
                 }
             }
 
+        }
+
+        //helper method for converting byte array
+        private static string MakeHashString(byte[] hashbytes)
+        {
+            StringBuilder hash = new StringBuilder(32); // 32 is the initial capacity for MD5
+
+            foreach (byte b in hashbytes)
+            {
+                //hash.Append(b.ToString("X2").ToLower());
+                hash.Append(b.ToString("X2"));
+            }
+            return hash.ToString();
         }
 
         private void backgroundWorker1_ProgressChanged(object sender, ProgressChangedEventArgs e)
@@ -136,6 +149,9 @@ namespace CheckMate
         private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
             // Method to run after file has been hashed
+            //MessageBox.Show(e.Result.ToString());
+            textBoxFileChecksum.Text = e.Result.ToString();
+            progressBar1.Value = 0;
         }
 
         // Calculate Checksum
