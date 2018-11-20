@@ -43,6 +43,7 @@
             this.textBoxFileBrowser = new System.Windows.Forms.TextBox();
             this.buttonCalculateChecksum = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            this.buttonSuppliedTXT = new System.Windows.Forms.Button();
             this.groupBoxCompare.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             this.SuspendLayout();
@@ -55,7 +56,7 @@
             this.textBoxFileChecksum.Name = "textBoxFileChecksum";
             this.textBoxFileChecksum.Size = new System.Drawing.Size(651, 31);
             this.textBoxFileChecksum.TabIndex = 0;
-            this.textBoxFileChecksum.Text = "Your own checksum goes here, or use \"Generate\" button";
+            this.textBoxFileChecksum.Text = "Calculated checksum (from script or CheckMate)";
             this.textBoxFileChecksum.Click += new System.EventHandler(this.textBoxGeneratedOnClick);
             this.textBoxFileChecksum.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -65,9 +66,9 @@
             this.textBoxCompareWith.ForeColor = System.Drawing.SystemColors.ActiveBorder;
             this.textBoxCompareWith.Location = new System.Drawing.Point(179, 100);
             this.textBoxCompareWith.Name = "textBoxCompareWith";
-            this.textBoxCompareWith.Size = new System.Drawing.Size(651, 31);
+            this.textBoxCompareWith.Size = new System.Drawing.Size(562, 31);
             this.textBoxCompareWith.TabIndex = 1;
-            this.textBoxCompareWith.Text = "Checksum that was provided for you (one that came with the file)";
+            this.textBoxCompareWith.Text = "Checksum txt file OR text that was provided for you";
             this.textBoxCompareWith.Click += new System.EventHandler(this.suppliedTextBoxOnClick);
             // 
             // labelGeneratedChecksum
@@ -82,6 +83,7 @@
             // 
             // groupBoxCompare
             // 
+            this.groupBoxCompare.Controls.Add(this.buttonSuppliedTXT);
             this.groupBoxCompare.Controls.Add(this.labelResultContext);
             this.groupBoxCompare.Controls.Add(this.buttonCheck);
             this.groupBoxCompare.Controls.Add(this.labelResult);
@@ -113,7 +115,7 @@
             this.buttonCheck.Name = "buttonCheck";
             this.buttonCheck.Size = new System.Drawing.Size(132, 43);
             this.buttonCheck.TabIndex = 4;
-            this.buttonCheck.Text = "Compare";
+            this.buttonCheck.Text = "Validate";
             this.buttonCheck.UseVisualStyleBackColor = true;
             this.buttonCheck.Click += new System.EventHandler(this.button1_Click);
             // 
@@ -149,7 +151,7 @@
             this.groupBoxFile.Size = new System.Drawing.Size(860, 140);
             this.groupBoxFile.TabIndex = 4;
             this.groupBoxFile.TabStop = false;
-            this.groupBoxFile.Text = "Generate File Checksum";
+            this.groupBoxFile.Text = "Calculate File Checksum";
             // 
             // progressBar1
             // 
@@ -160,7 +162,7 @@
             // 
             // buttonFileBrowse
             // 
-            this.buttonFileBrowse.Location = new System.Drawing.Point(747, 45);
+            this.buttonFileBrowse.Location = new System.Drawing.Point(747, 46);
             this.buttonFileBrowse.Name = "buttonFileBrowse";
             this.buttonFileBrowse.Size = new System.Drawing.Size(83, 43);
             this.buttonFileBrowse.TabIndex = 4;
@@ -175,7 +177,7 @@
             this.textBoxFileBrowser.Name = "textBoxFileBrowser";
             this.textBoxFileBrowser.Size = new System.Drawing.Size(559, 31);
             this.textBoxFileBrowser.TabIndex = 3;
-            this.textBoxFileBrowser.Text = "Path to the file you wish to generate checksum for...";
+            this.textBoxFileBrowser.Text = "Path to the file you wish to generate checksum for";
             this.textBoxFileBrowser.Click += new System.EventHandler(this.fileBrowserOnClick);
             // 
             // buttonCalculateChecksum
@@ -184,13 +186,25 @@
             this.buttonCalculateChecksum.Name = "buttonCalculateChecksum";
             this.buttonCalculateChecksum.Size = new System.Drawing.Size(135, 43);
             this.buttonCalculateChecksum.TabIndex = 0;
-            this.buttonCalculateChecksum.Text = "Generate";
+            this.buttonCalculateChecksum.Text = "Calculate";
             this.buttonCalculateChecksum.UseVisualStyleBackColor = true;
+            this.buttonCalculateChecksum.Click += new System.EventHandler(this.buttonCalculateChecksum_Click);
             // 
             // backgroundWorker1
             // 
             this.backgroundWorker1.WorkerReportsProgress = true;
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+            this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
+            this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
+            // 
+            // buttonSuppliedTXT
+            // 
+            this.buttonSuppliedTXT.Location = new System.Drawing.Point(747, 98);
+            this.buttonSuppliedTXT.Name = "buttonSuppliedTXT";
+            this.buttonSuppliedTXT.Size = new System.Drawing.Size(83, 43);
+            this.buttonSuppliedTXT.TabIndex = 6;
+            this.buttonSuppliedTXT.Text = "...";
+            this.buttonSuppliedTXT.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -201,7 +215,7 @@
             this.Controls.Add(this.groupBoxCompare);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
-            this.Text = "CheckMate (SHA-256)";
+            this.Text = "CheckMate (MD5 Hash Validator)";
             this.groupBoxCompare.ResumeLayout(false);
             this.groupBoxCompare.PerformLayout();
             this.groupBoxFile.ResumeLayout(false);
@@ -226,6 +240,7 @@
         private System.Windows.Forms.Button buttonFileBrowse;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ProgressBar progressBar1;
+        private System.Windows.Forms.Button buttonSuppliedTXT;
     }
 }
 
