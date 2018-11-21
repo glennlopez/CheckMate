@@ -22,6 +22,7 @@ namespace CheckMate
     {
         // File Dialogs
         OpenFileDialog ofd_fileForChecksum = new OpenFileDialog();
+        OpenFileDialog ofd_fileForCompare = new OpenFileDialog();
 
         public Form1()
         {
@@ -30,7 +31,7 @@ namespace CheckMate
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-
+            textBoxFileChecksum.Enabled = true;
         }
 
         private void label1_Click(object sender, EventArgs e)
@@ -49,7 +50,7 @@ namespace CheckMate
             {
                 labelResult.Text = "o";
                 labelResult.ForeColor = Color.Gray;
-                labelResultContext.Text = "... why are you compairing two empty textbox areas?";
+                labelResultContext.Text = "... you're not comparing anything?";
                 labelResultContext.ForeColor = Color.Gray;
             }
             else if (textBoxCompareWith.Text == "" || textBoxFileChecksum.Text == "")
@@ -91,7 +92,7 @@ namespace CheckMate
 
         private void textBoxGeneratedOnClick(object sender, EventArgs e)
         {
-           
+            textBoxFileChecksum.Enabled = true;
         }
 
         private void fileBrowserOnClick(object sender, EventArgs e)
@@ -166,11 +167,18 @@ namespace CheckMate
         // Calculate Checksum
         private void buttonCalculateChecksum_Click(object sender, EventArgs e)
         {
-            if (ofd_fileForChecksum.ShowDialog() == DialogResult.OK)
+            textBoxFileChecksum.Enabled = false;
+
+            // if textbox is empty, open the file dialog for the user
+            if (textBoxFileBrowser.Text == "")
             {
-                textBoxFileBrowser.Text = ofd_fileForChecksum.FileName;
+                if (ofd_fileForChecksum.ShowDialog() == DialogResult.OK)
+                {
+                    textBoxFileBrowser.Text = ofd_fileForChecksum.FileName;
+                }
             }
 
+            // run the background worker for MD5 hashing
             backgroundWorker1.RunWorkerAsync(textBoxFileBrowser.Text);
         }
 
@@ -181,6 +189,23 @@ namespace CheckMate
             {
                 textBoxFileBrowser.Text = ofd_fileForChecksum.FileName;
             }
+            
+        }
+
+        private void buttonTXTBrowser_Click(object sender, EventArgs e)
+        {
+            MessageBox.Show("For now, you can just copy-paste the hash string you'd like to compare " +
+                "into the textbox area.", "Not yet supported!");
+
+            /*
+            ofd_fileForCompare.Filter = "MD5|*.md5|TXT|*.txt";
+            if (ofd_fileForCompare.ShowDialog() == DialogResult.OK)
+            {
+                // debug - replace this with what ever text is in the .md5 or .txt
+                textBoxCompareWith.Text = ofd_fileForCompare.FileName;
+
+            }
+            */
             
         }
     }

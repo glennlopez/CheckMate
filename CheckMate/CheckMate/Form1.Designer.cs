@@ -33,6 +33,7 @@
             this.textBoxCompareWith = new System.Windows.Forms.TextBox();
             this.labelGeneratedChecksum = new System.Windows.Forms.Label();
             this.groupBoxCompare = new System.Windows.Forms.GroupBox();
+            this.buttonTXTBrowser = new System.Windows.Forms.Button();
             this.labelResultContext = new System.Windows.Forms.Label();
             this.buttonCheck = new System.Windows.Forms.Button();
             this.labelResult = new System.Windows.Forms.Label();
@@ -43,7 +44,6 @@
             this.textBoxFileBrowser = new System.Windows.Forms.TextBox();
             this.buttonCalculateChecksum = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.buttonTXTBrowser = new System.Windows.Forms.Button();
             this.groupBoxCompare.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             this.SuspendLayout();
@@ -59,6 +59,7 @@
             this.textBoxFileChecksum.TabIndex = 0;
             this.textBoxFileChecksum.Click += new System.EventHandler(this.textBoxGeneratedOnClick);
             this.textBoxFileChecksum.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.textBoxFileChecksum.DoubleClick += new System.EventHandler(this.textBoxGeneratedOnClick);
             // 
             // textBoxCompareWith
             // 
@@ -95,7 +96,17 @@
             this.groupBoxCompare.Size = new System.Drawing.Size(860, 222);
             this.groupBoxCompare.TabIndex = 3;
             this.groupBoxCompare.TabStop = false;
-            this.groupBoxCompare.Text = "Compare Checksums";
+            this.groupBoxCompare.Text = "Validate Checksum";
+            // 
+            // buttonTXTBrowser
+            // 
+            this.buttonTXTBrowser.Location = new System.Drawing.Point(747, 99);
+            this.buttonTXTBrowser.Name = "buttonTXTBrowser";
+            this.buttonTXTBrowser.Size = new System.Drawing.Size(83, 43);
+            this.buttonTXTBrowser.TabIndex = 6;
+            this.buttonTXTBrowser.Text = "...";
+            this.buttonTXTBrowser.UseVisualStyleBackColor = true;
+            this.buttonTXTBrowser.Click += new System.EventHandler(this.buttonTXTBrowser_Click);
             // 
             // labelResultContext
             // 
@@ -104,9 +115,9 @@
             this.labelResultContext.ForeColor = System.Drawing.SystemColors.ControlDarkDark;
             this.labelResultContext.Location = new System.Drawing.Point(228, 163);
             this.labelResultContext.Name = "labelResultContext";
-            this.labelResultContext.Size = new System.Drawing.Size(315, 32);
+            this.labelResultContext.Size = new System.Drawing.Size(318, 32);
             this.labelResultContext.TabIndex = 5;
-            this.labelResultContext.Text = "Click Compare when ready...";
+            this.labelResultContext.Text = "Click \"Validate\" to compare...";
             // 
             // buttonCheck
             // 
@@ -133,11 +144,11 @@
             // labelCompareTo
             // 
             this.labelCompareTo.AutoSize = true;
-            this.labelCompareTo.Location = new System.Drawing.Point(77, 106);
+            this.labelCompareTo.Location = new System.Drawing.Point(52, 106);
             this.labelCompareTo.Name = "labelCompareTo";
-            this.labelCompareTo.Size = new System.Drawing.Size(99, 25);
+            this.labelCompareTo.Size = new System.Drawing.Size(123, 25);
             this.labelCompareTo.TabIndex = 3;
-            this.labelCompareTo.Text = "Compare";
+            this.labelCompareTo.Text = "Compare to";
             // 
             // groupBoxFile
             // 
@@ -150,7 +161,7 @@
             this.groupBoxFile.Size = new System.Drawing.Size(860, 140);
             this.groupBoxFile.TabIndex = 4;
             this.groupBoxFile.TabStop = false;
-            this.groupBoxFile.Text = "Calculate File Checksum";
+            this.groupBoxFile.Text = "Checksum Calculator/Generator";
             // 
             // progressBar1
             // 
@@ -195,15 +206,6 @@
             this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
-            // 
-            // buttonTXTBrowser
-            // 
-            this.buttonTXTBrowser.Location = new System.Drawing.Point(747, 98);
-            this.buttonTXTBrowser.Name = "buttonTXTBrowser";
-            this.buttonTXTBrowser.Size = new System.Drawing.Size(83, 43);
-            this.buttonTXTBrowser.TabIndex = 6;
-            this.buttonTXTBrowser.Text = "...";
-            this.buttonTXTBrowser.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
