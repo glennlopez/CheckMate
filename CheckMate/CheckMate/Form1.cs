@@ -13,7 +13,7 @@ using System.Security.Cryptography;
 
 /* Tutorials used:
  *  MD5 - https://www.youtube.com/watch?v=9MJAUL7G49w
- *  SHA - N/A
+ *  SHA - http://peterkellner.net/2010/11/24/efficiently-generating-sha256-checksum-for-files-using-csharp/
  */
 
 namespace CheckMate
@@ -86,8 +86,7 @@ namespace CheckMate
 
         private void suppliedTextBoxOnClick(object sender, EventArgs e)
         {
-            //textBoxCompareWith.Text = "";
-            //textBoxCompareWith.ForeColor = Color.Black;
+
         }
 
         private void textBoxGeneratedOnClick(object sender, EventArgs e)
@@ -97,8 +96,7 @@ namespace CheckMate
 
         private void fileBrowserOnClick(object sender, EventArgs e)
         {
-            //textBoxFileBrowser.Text = "";
-            //textBoxFileBrowser.ForeColor = Color.Black;
+
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
