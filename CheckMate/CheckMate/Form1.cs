@@ -27,6 +27,9 @@ namespace CheckMate
         public Form1()
         {
             InitializeComponent();
+
+            // Custom Initialization
+            comboBoxHashMode.SelectedIndex = 0;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
