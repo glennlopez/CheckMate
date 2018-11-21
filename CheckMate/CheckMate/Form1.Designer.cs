@@ -43,7 +43,7 @@
             this.textBoxFileBrowser = new System.Windows.Forms.TextBox();
             this.buttonCalculateChecksum = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.buttonSuppliedTXT = new System.Windows.Forms.Button();
+            this.buttonTXTBrowser = new System.Windows.Forms.Button();
             this.groupBoxCompare.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             this.SuspendLayout();
@@ -73,7 +73,7 @@
             // labelGeneratedChecksum
             // 
             this.labelGeneratedChecksum.AutoSize = true;
-            this.labelGeneratedChecksum.Location = new System.Drawing.Point(60, 57);
+            this.labelGeneratedChecksum.Location = new System.Drawing.Point(60, 59);
             this.labelGeneratedChecksum.Name = "labelGeneratedChecksum";
             this.labelGeneratedChecksum.Size = new System.Drawing.Size(113, 25);
             this.labelGeneratedChecksum.TabIndex = 2;
@@ -82,7 +82,7 @@
             // 
             // groupBoxCompare
             // 
-            this.groupBoxCompare.Controls.Add(this.buttonSuppliedTXT);
+            this.groupBoxCompare.Controls.Add(this.buttonTXTBrowser);
             this.groupBoxCompare.Controls.Add(this.labelResultContext);
             this.groupBoxCompare.Controls.Add(this.buttonCheck);
             this.groupBoxCompare.Controls.Add(this.labelResult);
@@ -167,6 +167,7 @@
             this.buttonFileBrowse.TabIndex = 4;
             this.buttonFileBrowse.Text = "...";
             this.buttonFileBrowse.UseVisualStyleBackColor = true;
+            this.buttonFileBrowse.Click += new System.EventHandler(this.buttonFileBrowse_Click);
             // 
             // textBoxFileBrowser
             // 
@@ -195,14 +196,14 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // buttonSuppliedTXT
+            // buttonTXTBrowser
             // 
-            this.buttonSuppliedTXT.Location = new System.Drawing.Point(747, 98);
-            this.buttonSuppliedTXT.Name = "buttonSuppliedTXT";
-            this.buttonSuppliedTXT.Size = new System.Drawing.Size(83, 43);
-            this.buttonSuppliedTXT.TabIndex = 6;
-            this.buttonSuppliedTXT.Text = "...";
-            this.buttonSuppliedTXT.UseVisualStyleBackColor = true;
+            this.buttonTXTBrowser.Location = new System.Drawing.Point(747, 98);
+            this.buttonTXTBrowser.Name = "buttonTXTBrowser";
+            this.buttonTXTBrowser.Size = new System.Drawing.Size(83, 43);
+            this.buttonTXTBrowser.TabIndex = 6;
+            this.buttonTXTBrowser.Text = "...";
+            this.buttonTXTBrowser.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
@@ -238,7 +239,7 @@
         private System.Windows.Forms.Button buttonFileBrowse;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.ProgressBar progressBar1;
-        private System.Windows.Forms.Button buttonSuppliedTXT;
+        private System.Windows.Forms.Button buttonTXTBrowser;
     }
 }
 

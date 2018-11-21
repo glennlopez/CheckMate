@@ -20,6 +20,9 @@ namespace CheckMate
 {
     public partial class Form1 : Form
     {
+        // File Dialogs
+        OpenFileDialog ofd_fileForChecksum = new OpenFileDialog();
+
         public Form1()
         {
             InitializeComponent();
@@ -158,6 +161,16 @@ namespace CheckMate
         private void buttonCalculateChecksum_Click(object sender, EventArgs e)
         {
             backgroundWorker1.RunWorkerAsync(textBoxFileBrowser.Text);
+        }
+
+
+        private void buttonFileBrowse_Click(object sender, EventArgs e)
+        {
+            if (ofd_fileForChecksum.ShowDialog() == DialogResult.OK)
+            {
+                textBoxFileBrowser.Text = ofd_fileForChecksum.FileName;
+            }
+            
         }
     }
 }
