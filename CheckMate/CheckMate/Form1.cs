@@ -66,6 +66,13 @@ namespace CheckMate
                 labelResultContext.Text = "Checksum comparison passed!";
                 labelResultContext.ForeColor = Color.Green;
             }
+            else if (textBoxCompareWith.Text == textBoxFileChecksum.Text.ToLower())
+            {
+                labelResult.Text = "þ";
+                labelResult.ForeColor = Color.Green;
+                labelResultContext.Text = "Checksum comparison passed!";
+                labelResultContext.ForeColor = Color.Green;
+            }
             else
             {
                 labelResult.Text = "ý";
@@ -84,8 +91,7 @@ namespace CheckMate
 
         private void textBoxGeneratedOnClick(object sender, EventArgs e)
         {
-            //textBoxFileChecksum.Text = "";
-            //textBoxFileChecksum.ForeColor = Color.Black;
+           
         }
 
         private void fileBrowserOnClick(object sender, EventArgs e)
