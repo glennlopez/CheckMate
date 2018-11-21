@@ -166,6 +166,11 @@ namespace CheckMate
         // Calculate Checksum
         private void buttonCalculateChecksum_Click(object sender, EventArgs e)
         {
+            if (ofd_fileForChecksum.ShowDialog() == DialogResult.OK)
+            {
+                textBoxFileBrowser.Text = ofd_fileForChecksum.FileName;
+            }
+
             backgroundWorker1.RunWorkerAsync(textBoxFileBrowser.Text);
         }
 
