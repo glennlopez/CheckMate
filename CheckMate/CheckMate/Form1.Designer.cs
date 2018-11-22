@@ -55,7 +55,7 @@
             this.textBoxFileChecksum.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.textBoxFileChecksum.Location = new System.Drawing.Point(220, 53);
             this.textBoxFileChecksum.Name = "textBoxFileChecksum";
-            this.textBoxFileChecksum.Size = new System.Drawing.Size(610, 35);
+            this.textBoxFileChecksum.Size = new System.Drawing.Size(521, 35);
             this.textBoxFileChecksum.TabIndex = 0;
             this.textBoxFileChecksum.Click += new System.EventHandler(this.textBoxGeneratedOnClick);
             this.textBoxFileChecksum.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
