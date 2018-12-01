@@ -209,5 +209,11 @@ namespace CheckMate
             */
             
         }
+
+        private void button1_Click_1(object sender, EventArgs e)
+        {
+            MessageBox.Show("For now, you can just copy-paste the hash string " +
+                "into a textfile and save it.", "Not yet supported!");
+        }
     }
 }
