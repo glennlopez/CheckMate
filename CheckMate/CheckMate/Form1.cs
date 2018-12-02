@@ -18,32 +18,23 @@ using System.Security.Cryptography;
 
 namespace CheckMate
 {
-    public partial class Form1 : Form
+    public partial class MainForm : Form
     {
         // File Dialogs
         OpenFileDialog ofd_fileForChecksum = new OpenFileDialog();
         OpenFileDialog ofd_fileForCompare = new OpenFileDialog();
 
-        public Form1()
+        public MainForm()
         {
             InitializeComponent();
 
-            // Custom Initialization
-            comboBoxHashMode.SelectedIndex = 0;
+            // Default settings
+            comboBoxHashMode.SelectedIndex = 1;
         }
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             textBoxFileChecksum.Enabled = true;
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void labelResult_Click(object sender, EventArgs e)
-        {
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -53,7 +44,7 @@ namespace CheckMate
             {
                 labelResult.Text = "o";
                 labelResult.ForeColor = Color.Gray;
-                labelResultContext.Text = "... you're not comparing anything?";
+                labelResultContext.Text = "dude... you're not comparing anything v_v'";
                 labelResultContext.ForeColor = Color.Gray;
             }
             else if (textBoxCompareWith.Text == "" || textBoxFileChecksum.Text == "")
@@ -84,12 +75,6 @@ namespace CheckMate
                 labelResultContext.Text = "WARNING: Checksum Failed!";
                 labelResultContext.ForeColor = Color.Red;
             }
-            
-        }
-
-        private void suppliedTextBoxOnClick(object sender, EventArgs e)
-        {
-
         }
 
         private void textBoxGeneratedOnClick(object sender, EventArgs e)
@@ -168,9 +153,19 @@ namespace CheckMate
         // Calculate Checksum
         private void buttonCalculateChecksum_Click(object sender, EventArgs e)
         {
+            // TODO: check if there is a filename.md5 or filename.sha
+            // if it exists in the same dir, paste the hash string to textBoxCompareWith
+            // and calculate the file's checksum, then auto "Valudate" for the user
+
+            // NOTE: alert the user that a filename.md5 or filename.sha was found
+            // and that the program will auto-validate the file after the checksum is calculated
+            // "Checksum file found!"
+            // "A checksum file for (FILE NAME) already exists in the same directory, would you like to auto-validate
+            // (FILE NAME)'s integrity?" 
+
             textBoxFileChecksum.Enabled = false;
 
-            // if textbox is empty, open the file dialog for the user
+            // Open the file dialog for the user if textbox is empty
             if (textBoxFileBrowser.Text == "")
             {
                 if (ofd_fileForChecksum.ShowDialog() == DialogResult.OK)
@@ -179,8 +174,18 @@ namespace CheckMate
                 }
             }
 
-            // run the background worker for MD5 hashing
-            backgroundWorker1.RunWorkerAsync(textBoxFileBrowser.Text);
+            // Check if textbox is empty before running the checksum calculation
+            if (!(textBoxFileBrowser.Text == ""))
+            {
+                // Run the background worker for MD5 hashing
+                backgroundWorker1.RunWorkerAsync(textBoxFileBrowser.Text);
+            }
+            else
+            {
+                // Do Nothing...
+                // Optional: alert user there is nothing in the text area
+            }
+            
         }
 
 
@@ -195,25 +200,89 @@ namespace CheckMate
 
         private void buttonTXTBrowser_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("For now, you can just copy-paste the hash string you'd like to compare " +
-                "into the textbox area.", "Not yet supported!");
+            //TODO: read file content and place it in "textBoxCompareWith"
 
             /*
-            ofd_fileForCompare.Filter = "MD5|*.md5|TXT|*.txt";
+            MessageBox.Show("For now, you can just copy-paste the hash string you'd like to compare " +
+                "into the textbox area.", "Not yet supported!");
+            */
+            
+
+            if (comboBoxHashMode.Text == "MD5")
+            {
+                ofd_fileForCompare.Title = "Save MD5 Checksum";
+                ofd_fileForCompare.Filter = "MD5|*.md5";
+            }
+            else if (comboBoxHashMode.Text == "SHA-256")
+            {
+                ofd_fileForCompare.Title = "Save SHA-256 Checksum";
+                ofd_fileForCompare.Filter = "SHA-256|*.sha2";
+            }
+            else if (comboBoxHashMode.Text == "TIGER-192")
+            {
+                ofd_fileForCompare.Title = "Save TIGER-192 Checksum";
+                ofd_fileForCompare.Filter = "TIGER-192|*.tiger";
+            }
+            else if (comboBoxHashMode.Text == "WHIRLPOOL")
+            {
+                ofd_fileForCompare.Title = "Save WHIRLPOOL Checksum";
+                ofd_fileForCompare.Filter = "WHIRLPOOL|*.wpool";
+            }
+
             if (ofd_fileForCompare.ShowDialog() == DialogResult.OK)
             {
                 // debug - replace this with what ever text is in the .md5 or .txt
                 textBoxCompareWith.Text = ofd_fileForCompare.FileName;
 
             }
-            */
+            
             
         }
 
+        // Saving hash
         private void button1_Click_1(object sender, EventArgs e)
         {
-            MessageBox.Show("For now, you can just copy-paste the hash string " +
-                "into a textfile and save it.", "Not yet supported!");
+            string filePathDir = Path.GetDirectoryName(textBoxFileBrowser.Text);
+            string fileName = Path.GetFileNameWithoutExtension(textBoxFileBrowser.Text);
+
+            //Save File Dialog Settings
+            SaveFileDialog sfd_saveHash = new SaveFileDialog();
+            if (comboBoxHashMode.Text == "MD5")
+            {
+                sfd_saveHash.Title = "Save MD5 Checksum";
+                sfd_saveHash.Filter = "MD5|*.md5";
+            }
+            else if(comboBoxHashMode.Text == "SHA-256")
+            {
+                sfd_saveHash.Title = "Save SHA-256 Checksum";
+                sfd_saveHash.Filter = "SHA-256|*.sha2";
+            }
+            else if (comboBoxHashMode.Text == "TIGER-192")
+            {
+                sfd_saveHash.Title = "Save TIGER-192 Checksum";
+                sfd_saveHash.Filter = "TIGER-192|*.tiger";
+            }
+            else if (comboBoxHashMode.Text == "WHIRLPOOL")
+            {
+                sfd_saveHash.Title = "Save WHIRLPOOL Checksum";
+                sfd_saveHash.Filter = "WHIRLPOOL|*.wpool";
+            }
+
+            sfd_saveHash.FileName = fileName;
+            sfd_saveHash.InitialDirectory = filePathDir;
+
+            // Save File Dialog
+            if (sfd_saveHash.ShowDialog() == DialogResult.OK)
+            {
+                using (Stream s = File.Open(sfd_saveHash.FileName, FileMode.CreateNew))
+                using (StreamWriter sw = new StreamWriter(s))
+                {
+                    sw.Write(textBoxFileChecksum.Text);
+                }
+            }
+
+            
+           
         }
     }
 }

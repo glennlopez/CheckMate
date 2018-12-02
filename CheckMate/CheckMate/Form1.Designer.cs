@@ -1,6 +1,6 @@
 ﻿namespace CheckMate
 {
-    partial class Form1
+    partial class MainForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             this.textBoxFileChecksum = new System.Windows.Forms.TextBox();
             this.textBoxCompareWith = new System.Windows.Forms.TextBox();
             this.groupBoxCompare = new System.Windows.Forms.GroupBox();
+            this.buttonSaveHash = new System.Windows.Forms.Button();
             this.comboBoxHashMode = new System.Windows.Forms.ComboBox();
             this.buttonTXTBrowser = new System.Windows.Forms.Button();
             this.labelResultContext = new System.Windows.Forms.Label();
@@ -44,7 +45,6 @@
             this.textBoxFileBrowser = new System.Windows.Forms.TextBox();
             this.buttonCalculateChecksum = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.button1 = new System.Windows.Forms.Button();
             this.groupBoxCompare.SuspendLayout();
             this.groupBoxFile.SuspendLayout();
             this.SuspendLayout();
@@ -70,11 +70,10 @@
             this.textBoxCompareWith.Name = "textBoxCompareWith";
             this.textBoxCompareWith.Size = new System.Drawing.Size(521, 35);
             this.textBoxCompareWith.TabIndex = 1;
-            this.textBoxCompareWith.Click += new System.EventHandler(this.suppliedTextBoxOnClick);
             // 
             // groupBoxCompare
             // 
-            this.groupBoxCompare.Controls.Add(this.button1);
+            this.groupBoxCompare.Controls.Add(this.buttonSaveHash);
             this.groupBoxCompare.Controls.Add(this.comboBoxHashMode);
             this.groupBoxCompare.Controls.Add(this.buttonTXTBrowser);
             this.groupBoxCompare.Controls.Add(this.labelResultContext);
@@ -88,17 +87,34 @@
             this.groupBoxCompare.Size = new System.Drawing.Size(860, 222);
             this.groupBoxCompare.TabIndex = 3;
             this.groupBoxCompare.TabStop = false;
-            this.groupBoxCompare.Text = "Validate/Save Checksum";
+            this.groupBoxCompare.Text = "File Integrity verifier";
+            // 
+            // buttonSaveHash
+            // 
+            this.buttonSaveHash.Font = new System.Drawing.Font("Wingdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.buttonSaveHash.Location = new System.Drawing.Point(747, 52);
+            this.buttonSaveHash.Name = "buttonSaveHash";
+            this.buttonSaveHash.Size = new System.Drawing.Size(83, 45);
+            this.buttonSaveHash.TabIndex = 9;
+            this.buttonSaveHash.Text = "<";
+            this.buttonSaveHash.UseVisualStyleBackColor = true;
+            this.buttonSaveHash.Click += new System.EventHandler(this.button1_Click_1);
             // 
             // comboBoxHashMode
             // 
+            this.comboBoxHashMode.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.comboBoxHashMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxHashMode.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.comboBoxHashMode.FormattingEnabled = true;
             this.comboBoxHashMode.Items.AddRange(new object[] {
-            "MD5 Hash",
-            "SHA-256"});
+            "MD5",
+            "SHA-256",
+            "TIGER-192",
+            "WHIRLPOOL"});
             this.comboBoxHashMode.Location = new System.Drawing.Point(41, 53);
             this.comboBoxHashMode.Name = "comboBoxHashMode";
-            this.comboBoxHashMode.Size = new System.Drawing.Size(173, 33);
+            this.comboBoxHashMode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
+            this.comboBoxHashMode.Size = new System.Drawing.Size(163, 33);
             this.comboBoxHashMode.TabIndex = 8;
             // 
             // buttonTXTBrowser
@@ -142,7 +158,6 @@
             this.labelResult.Size = new System.Drawing.Size(72, 58);
             this.labelResult.TabIndex = 4;
             this.labelResult.Text = "o";
-            this.labelResult.Click += new System.EventHandler(this.labelResult_Click);
             // 
             // labelCompareTo
             // 
@@ -164,7 +179,7 @@
             this.groupBoxFile.Size = new System.Drawing.Size(860, 140);
             this.groupBoxFile.TabIndex = 4;
             this.groupBoxFile.TabStop = false;
-            this.groupBoxFile.Text = "Checksum Calculator/Generator";
+            this.groupBoxFile.Text = "Checksum Generator";
             // 
             // progressBar1
             // 
@@ -175,9 +190,9 @@
             // 
             // buttonFileBrowse
             // 
-            this.buttonFileBrowse.Location = new System.Drawing.Point(747, 49);
+            this.buttonFileBrowse.Location = new System.Drawing.Point(747, 48);
             this.buttonFileBrowse.Name = "buttonFileBrowse";
-            this.buttonFileBrowse.Size = new System.Drawing.Size(83, 43);
+            this.buttonFileBrowse.Size = new System.Drawing.Size(83, 45);
             this.buttonFileBrowse.TabIndex = 4;
             this.buttonFileBrowse.Text = "...";
             this.buttonFileBrowse.UseVisualStyleBackColor = true;
@@ -187,7 +202,7 @@
             // 
             this.textBoxFileBrowser.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxFileBrowser.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.textBoxFileBrowser.Location = new System.Drawing.Point(182, 48);
+            this.textBoxFileBrowser.Location = new System.Drawing.Point(182, 50);
             this.textBoxFileBrowser.Name = "textBoxFileBrowser";
             this.textBoxFileBrowser.Size = new System.Drawing.Size(559, 35);
             this.textBoxFileBrowser.TabIndex = 3;
@@ -195,11 +210,11 @@
             // 
             // buttonCalculateChecksum
             // 
-            this.buttonCalculateChecksum.Location = new System.Drawing.Point(41, 46);
+            this.buttonCalculateChecksum.Location = new System.Drawing.Point(41, 49);
             this.buttonCalculateChecksum.Name = "buttonCalculateChecksum";
-            this.buttonCalculateChecksum.Size = new System.Drawing.Size(135, 43);
+            this.buttonCalculateChecksum.Size = new System.Drawing.Size(135, 45);
             this.buttonCalculateChecksum.TabIndex = 0;
-            this.buttonCalculateChecksum.Text = "Calculate";
+            this.buttonCalculateChecksum.Text = "Generate";
             this.buttonCalculateChecksum.UseVisualStyleBackColor = true;
             this.buttonCalculateChecksum.Click += new System.EventHandler(this.buttonCalculateChecksum_Click);
             // 
@@ -210,27 +225,17 @@
             this.backgroundWorker1.ProgressChanged += new System.ComponentModel.ProgressChangedEventHandler(this.backgroundWorker1_ProgressChanged);
             this.backgroundWorker1.RunWorkerCompleted += new System.ComponentModel.RunWorkerCompletedEventHandler(this.backgroundWorker1_RunWorkerCompleted);
             // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Wingdings", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.button1.Location = new System.Drawing.Point(747, 52);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(83, 45);
-            this.button1.TabIndex = 9;
-            this.button1.Text = "<";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click_1);
-            // 
-            // Form1
+            // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(12F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(888, 410);
+            this.ClientSize = new System.Drawing.Size(888, 392);
             this.Controls.Add(this.groupBoxFile);
             this.Controls.Add(this.groupBoxCompare);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "Form1";
-            this.Text = "CheckMate (For Lakeside Proccessing)";
+            this.Name = "MainForm";
+            this.Text = "Lakeside CheckMate";
             this.groupBoxCompare.ResumeLayout(false);
             this.groupBoxCompare.PerformLayout();
             this.groupBoxFile.ResumeLayout(false);
@@ -256,7 +261,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Button buttonTXTBrowser;
         private System.Windows.Forms.ComboBox comboBoxHashMode;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonSaveHash;
     }
 }
 
