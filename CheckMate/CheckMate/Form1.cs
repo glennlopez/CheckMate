@@ -164,6 +164,7 @@ namespace CheckMate
             // (FILE NAME)'s integrity?" 
 
             textBoxFileChecksum.Enabled = false;
+            ofd_fileForChecksum.Title = "Calculate Checksum";
 
             // Open the file dialog for the user if textbox is empty
             if (textBoxFileBrowser.Text == "")
@@ -191,6 +192,7 @@ namespace CheckMate
 
         private void buttonFileBrowse_Click(object sender, EventArgs e)
         {
+            ofd_fileForChecksum.Title = "Calculate Checksum";
             if (ofd_fileForChecksum.ShowDialog() == DialogResult.OK)
             {
                 textBoxFileBrowser.Text = ofd_fileForChecksum.FileName;
@@ -201,31 +203,26 @@ namespace CheckMate
         private void buttonTXTBrowser_Click(object sender, EventArgs e)
         {
             //TODO: read file content and place it in "textBoxCompareWith"
-
-            /*
-            MessageBox.Show("For now, you can just copy-paste the hash string you'd like to compare " +
-                "into the textbox area.", "Not yet supported!");
-            */
             
 
             if (comboBoxHashMode.Text == "MD5")
             {
-                ofd_fileForCompare.Title = "Save MD5 Checksum";
+                ofd_fileForCompare.Title = "Open MD5 hash file";
                 ofd_fileForCompare.Filter = "MD5|*.md5";
             }
             else if (comboBoxHashMode.Text == "SHA-256")
             {
-                ofd_fileForCompare.Title = "Save SHA-256 Checksum";
+                ofd_fileForCompare.Title = "Open SHA-256 hash file";
                 ofd_fileForCompare.Filter = "SHA-256|*.sha2";
             }
             else if (comboBoxHashMode.Text == "TIGER-192")
             {
-                ofd_fileForCompare.Title = "Save TIGER-192 Checksum";
+                ofd_fileForCompare.Title = "Open TIGER-192 hash file";
                 ofd_fileForCompare.Filter = "TIGER-192|*.tiger";
             }
             else if (comboBoxHashMode.Text == "WHIRLPOOL")
             {
-                ofd_fileForCompare.Title = "Save WHIRLPOOL Checksum";
+                ofd_fileForCompare.Title = "Open WHIRLPOOL hash file";
                 ofd_fileForCompare.Filter = "WHIRLPOOL|*.wpool";
             }
 
@@ -249,22 +246,22 @@ namespace CheckMate
             SaveFileDialog sfd_saveHash = new SaveFileDialog();
             if (comboBoxHashMode.Text == "MD5")
             {
-                sfd_saveHash.Title = "Save MD5 Checksum";
+                sfd_saveHash.Title = "Save MD5 hash";
                 sfd_saveHash.Filter = "MD5|*.md5";
             }
             else if(comboBoxHashMode.Text == "SHA-256")
             {
-                sfd_saveHash.Title = "Save SHA-256 Checksum";
+                sfd_saveHash.Title = "Save SHA-256 hash";
                 sfd_saveHash.Filter = "SHA-256|*.sha2";
             }
             else if (comboBoxHashMode.Text == "TIGER-192")
             {
-                sfd_saveHash.Title = "Save TIGER-192 Checksum";
+                sfd_saveHash.Title = "Save TIGER-192 hash";
                 sfd_saveHash.Filter = "TIGER-192|*.tiger";
             }
             else if (comboBoxHashMode.Text == "WHIRLPOOL")
             {
-                sfd_saveHash.Title = "Save WHIRLPOOL Checksum";
+                sfd_saveHash.Title = "Save WHIRLPOOL hash";
                 sfd_saveHash.Filter = "WHIRLPOOL|*.wpool";
             }
 
@@ -283,6 +280,23 @@ namespace CheckMate
 
             
            
+        }
+
+        // Combobox selection
+        private void comboBoxHashMode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // TODO: anytime a selection is made, the textBoxFileBrowser, and textBoxFileChecksum need to be empty
+
+            if (comboBoxHashMode.SelectedIndex == 2)
+            {
+                MessageBox.Show("Sorry, the " + comboBoxHashMode.Text + 
+                    " hash function is not ready.", "Oops! That's not supported yet.");
+            }
+            else if (comboBoxHashMode.SelectedIndex == 3)
+            {
+                MessageBox.Show("Sorry, the " + comboBoxHashMode.Text +
+                    " hash function is not ready.", "Oops! That's not supported yet.");
+            }
         }
     }
 }

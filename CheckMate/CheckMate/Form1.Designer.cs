@@ -116,6 +116,7 @@
             this.comboBoxHashMode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.comboBoxHashMode.Size = new System.Drawing.Size(163, 33);
             this.comboBoxHashMode.TabIndex = 8;
+            this.comboBoxHashMode.SelectedIndexChanged += new System.EventHandler(this.comboBoxHashMode_SelectedIndexChanged);
             // 
             // buttonTXTBrowser
             // 
