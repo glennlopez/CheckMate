@@ -277,25 +277,54 @@ namespace CheckMate
                     sw.Write(textBoxFileChecksum.Text);
                 }
             }
+        }
 
-            
-           
+        public void disableAll()
+        {
+            buttonCalculateChecksum.Enabled = false;
+            textBoxFileBrowser.Enabled = false;
+            buttonFileBrowse.Enabled = false;
+            textBoxFileChecksum.Enabled = false;
+            buttonSaveHash.Enabled = false;
+            textBoxCompareWith.Enabled = false;
+            buttonTXTBrowser.Enabled = false;
+            buttonCheck.Enabled = false;
+        }
+
+        public void enableAll()
+        {
+            buttonCalculateChecksum.Enabled = true;
+            textBoxFileBrowser.Enabled = true;
+            buttonFileBrowse.Enabled = true;
+            textBoxFileChecksum.Enabled = true;
+            buttonSaveHash.Enabled = true;
+            textBoxCompareWith.Enabled = true;
+            buttonTXTBrowser.Enabled = true;
+            buttonCheck.Enabled = true;
         }
 
         // Combobox selection
         private void comboBoxHashMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // TODO: anytime a selection is made, the textBoxFileBrowser, and textBoxFileChecksum need to be empty
+            // Reset textboxes for user
+            textBoxFileBrowser.Text = "";
+            textBoxFileChecksum.Text = "";
 
             if (comboBoxHashMode.SelectedIndex == 2)
             {
                 MessageBox.Show("Sorry, the " + comboBoxHashMode.Text + 
                     " hash function is not ready.", "Oops! That's not supported yet.");
+                disableAll();
             }
             else if (comboBoxHashMode.SelectedIndex == 3)
             {
                 MessageBox.Show("Sorry, the " + comboBoxHashMode.Text +
                     " hash function is not ready.", "Oops! That's not supported yet.");
+                disableAll();
+            }
+            else
+            {
+                enableAll();
             }
         }
     }
