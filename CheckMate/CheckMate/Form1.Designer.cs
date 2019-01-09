@@ -108,9 +108,7 @@
             this.comboBoxHashMode.FormattingEnabled = true;
             this.comboBoxHashMode.Items.AddRange(new object[] {
             "MD5",
-            "SHA-256",
-            "TIGER-192",
-            "WHIRLPOOL"});
+            "SHA-256"});
             this.comboBoxHashMode.Location = new System.Drawing.Point(41, 53);
             this.comboBoxHashMode.Name = "comboBoxHashMode";
             this.comboBoxHashMode.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
@@ -180,7 +178,7 @@
             this.groupBoxFile.Size = new System.Drawing.Size(860, 140);
             this.groupBoxFile.TabIndex = 4;
             this.groupBoxFile.TabStop = false;
-            this.groupBoxFile.Text = "Checksum Generator";
+            this.groupBoxFile.Text = "Checksum Calculator";
             // 
             // progressBar1
             // 
@@ -215,7 +213,7 @@
             this.buttonCalculateChecksum.Name = "buttonCalculateChecksum";
             this.buttonCalculateChecksum.Size = new System.Drawing.Size(135, 45);
             this.buttonCalculateChecksum.TabIndex = 0;
-            this.buttonCalculateChecksum.Text = "Generate";
+            this.buttonCalculateChecksum.Text = "Get Hash";
             this.buttonCalculateChecksum.UseVisualStyleBackColor = true;
             this.buttonCalculateChecksum.Click += new System.EventHandler(this.buttonCalculateChecksum_Click);
             // 

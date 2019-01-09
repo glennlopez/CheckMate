@@ -11,11 +11,6 @@ using System.Windows.Forms;
 using System.IO;
 using System.Security.Cryptography;
 
-/* Tutorials used:
- *  MD5 - https://www.youtube.com/watch?v=9MJAUL7G49w
- *  SHA - http://peterkellner.net/2010/11/24/efficiently-generating-sha256-checksum-for-files-using-csharp/
- */
-
 namespace CheckMate
 {
     public partial class MainForm : Form
@@ -23,10 +18,13 @@ namespace CheckMate
         // File Dialogs
         OpenFileDialog ofd_fileForChecksum = new OpenFileDialog();
         OpenFileDialog ofd_fileForCompare = new OpenFileDialog();
+        string SHA256Hash = "";
+        string MD5Hash = "";
 
         public MainForm()
         {
             InitializeComponent();
+
 
             // Default settings
             comboBoxHashMode.SelectedIndex = 1;
@@ -44,7 +42,7 @@ namespace CheckMate
             {
                 labelResult.Text = "o";
                 labelResult.ForeColor = Color.Gray;
-                labelResultContext.Text = "dude... you're not comparing anything v_v'";
+                labelResultContext.Text = "You're not comparing anything...";
                 labelResultContext.ForeColor = Color.Gray;
             }
             else if (textBoxCompareWith.Text == "" || textBoxFileChecksum.Text == "")
@@ -87,6 +85,17 @@ namespace CheckMate
 
         }
 
+        // Hash function for generating SHA256 checksum
+        private static string GetSHA256Checksum(Stream stream)
+        {
+            using (var bufferedStream = new BufferedStream(stream, 1024 * 32))
+            {
+                var sha = new SHA256Managed();
+                byte[] checksum = sha.ComputeHash(bufferedStream);
+                return BitConverter.ToString(checksum).Replace("-", String.Empty);
+            }
+        }
+
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
             string filePath = e.Argument.ToString();
@@ -96,6 +105,11 @@ namespace CheckMate
             long size;                  // Holds the size of the file we are hashing
             long totalBytesRead = 0;    // Keeps track of the total bytes read so far
 
+            // SHA256 Work
+            var SHA256FileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Read);
+            SHA256Hash = GetSHA256Checksum(SHA256FileStream);
+
+            // MD5 Work
             using (Stream file = File.OpenRead(filePath))
             {
                 size = file.Length;     // Get the size of the file 
@@ -123,7 +137,7 @@ namespace CheckMate
 
         }
 
-        //helper method for converting byte array
+        // Helper method for converting byte array
         private static string MakeHashString(byte[] hashbytes)
         {
             StringBuilder hash = new StringBuilder(32); // 32 is the initial capacity for MD5
@@ -146,7 +160,23 @@ namespace CheckMate
         {
             // Method to run after file has been hashed
             //MessageBox.Show(e.Result.ToString());
-            textBoxFileChecksum.Text = e.Result.ToString();
+            //textBoxFileChecksum.Text = e.Result.ToString();
+
+            // Store MD5 result to Global String
+            MD5Hash = e.Result.ToString();
+
+            // Update textBoxFileChecksum text
+            if (comboBoxHashMode.SelectedIndex == 0)
+            {
+                textBoxFileChecksum.Text = MD5Hash;
+            }
+            if (comboBoxHashMode.SelectedIndex == 1)
+            {
+                textBoxFileChecksum.Text = SHA256Hash;
+            }
+
+
+            // Set progress bar to 0
             progressBar1.Value = 0;
         }
 
@@ -163,10 +193,10 @@ namespace CheckMate
             // "A checksum file for (FILE NAME) already exists in the same directory, would you like to auto-validate
             // (FILE NAME)'s integrity?" 
 
-            textBoxFileChecksum.Enabled = false;
+            //textBoxFileChecksum.Enabled = false;
             ofd_fileForChecksum.Title = "Calculate Checksum";
 
-            // Open the file dialog for the user if textbox is empty
+            // Open the file dialog for the user if textbox is emptyFileBrowser
             if (textBoxFileBrowser.Text == "")
             {
                 if (ofd_fileForChecksum.ShowDialog() == DialogResult.OK)
@@ -306,26 +336,19 @@ namespace CheckMate
         // Combobox selection
         private void comboBoxHashMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-            // Reset textboxes for user
-            textBoxFileBrowser.Text = "";
-            textBoxFileChecksum.Text = "";
 
-            if (comboBoxHashMode.SelectedIndex == 2)
+            // MD5 Selected
+            if (comboBoxHashMode.SelectedIndex == 0)
             {
-                MessageBox.Show("Sorry, the " + comboBoxHashMode.Text + 
-                    " hash function is not ready.", "Oops! That's not supported yet.");
-                disableAll();
+                textBoxFileChecksum.Text = MD5Hash;
             }
-            else if (comboBoxHashMode.SelectedIndex == 3)
+
+            // SHA256 Selected
+            if (comboBoxHashMode.SelectedIndex == 1)
             {
-                MessageBox.Show("Sorry, the " + comboBoxHashMode.Text +
-                    " hash function is not ready.", "Oops! That's not supported yet.");
-                disableAll();
+                textBoxFileChecksum.Text = SHA256Hash;
             }
-            else
-            {
-                enableAll();
-            }
+            
         }
     }
 }
