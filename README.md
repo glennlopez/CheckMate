@@ -2,7 +2,7 @@
 
 This is a very simple Checksum tool for validating file integrity using SHA256 or MD5 calculations (checks if a file is corrupt or has been modified).
 
-![CheckMateSS1](https://github.com/glennlopez/Lakeside.CheckMate/blob/master/CheckMate/CheckMate/screenshots/3.PNG?raw=true)
+<img src="https://github.com/glennlopez/Lakeside.CheckMate/blob/master/CheckMate/CheckMate/screenshots/3.PNG?raw=true" width="400" height="220" />
 
 ## Getting Started
 
