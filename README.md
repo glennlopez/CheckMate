@@ -25,10 +25,12 @@ I use [SemVer](http://semver.org/) for versioning. For the versions available, s
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/glennlopez/Lakeside.CheckMate/blob/master/LICENSE) file for details
 
 ## Acknowledgments
 
 * Ngoc Pham (Instrumentation/Project Engineering)
    - Project scope definition
    - Testing
+
+* [Lakeside Controls](http://Lakesidecontrols.ca) - The icon and logo used for CheckMate are trademark property of Lakeside Controls/Lakeside Processing. CheckMate source code is completely opensource. The Logo's and Images are NOT public domain. You are expected to change the logo and icons if you re-distribute, or fork this project.
