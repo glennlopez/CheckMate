@@ -232,38 +232,28 @@ namespace CheckMate
 
         private void buttonTXTBrowser_Click(object sender, EventArgs e)
         {
-            //TODO: read file content and place it in "textBoxCompareWith"
-            
 
             if (comboBoxHashMode.Text == "MD5")
             {
                 ofd_fileForCompare.Title = "Open MD5 hash file";
                 ofd_fileForCompare.Filter = "MD5|*.md5";
             }
-            else if (comboBoxHashMode.Text == "SHA-256")
+            if (comboBoxHashMode.Text == "SHA-256")
             {
                 ofd_fileForCompare.Title = "Open SHA-256 hash file";
                 ofd_fileForCompare.Filter = "SHA-256|*.sha2";
             }
-            else if (comboBoxHashMode.Text == "TIGER-192")
-            {
-                ofd_fileForCompare.Title = "Open TIGER-192 hash file";
-                ofd_fileForCompare.Filter = "TIGER-192|*.tiger";
-            }
-            else if (comboBoxHashMode.Text == "WHIRLPOOL")
-            {
-                ofd_fileForCompare.Title = "Open WHIRLPOOL hash file";
-                ofd_fileForCompare.Filter = "WHIRLPOOL|*.wpool";
-            }
 
+            // Open File Dialog
             if (ofd_fileForCompare.ShowDialog() == DialogResult.OK)
             {
-                // debug - replace this with what ever text is in the .md5 or .txt
-                textBoxCompareWith.Text = ofd_fileForCompare.FileName;
-
+                // read file content and place it in "textBoxCompareWith"
+                textBoxCompareWith.Text = File.ReadAllText(ofd_fileForCompare.FileName);
             }
+
             
-            
+
+
         }
 
         // Saving hash
