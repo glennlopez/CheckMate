@@ -7,11 +7,12 @@ Think of checksums as fingerprints for that particular file. When you edit a fil
 
 We use checksums to validate if a file we transfered from colleague to colleague via USB drive or Email is exactly the same as the source. 
 
-Doing checksums become **especially important** when transfering firmware updates via usb, email, ftp, etc... If a firware is corrupt, you may not realize it until the damage is done (after the firmware has been installed). 
+#### Why do a Checksum
+Doing checksums become especially important when transfering firmware updates via usb, email, ftp, etc... If a firware is corrupt, you may not realize the damage you've done until its too late.
 
 Damages can range from a **bricked EEPROM**, rendering your device forever-useless (due to a corrupt file)-- to unintentionally introducing **attack vectors** hackers can take advantage of (from unknowingly installing a firmware that was modified by a hacker during a man-in-the-middle attack).
 
-So ya.. just do the damn checksum and quit being lazy. The good news is, this tool aims to make it less painful for you to do your checksums, and best of all... its open source!
+So ya.. just do the damn checksum. The good news is, this tool aims to make it less painful for you to do that, and best of all... its open source!
 
 <img src="https://github.com/glennlopez/Lakeside.CheckMate/blob/master/CheckMate/CheckMate/screenshots/3.PNG?raw=true" width="400" height="220" />
 
