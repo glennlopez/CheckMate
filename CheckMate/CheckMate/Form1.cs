@@ -284,6 +284,7 @@ namespace CheckMate
                 sfd_saveHash.Title = "Save SHA-256 hash";
                 sfd_saveHash.Filter = "SHA-256|*.sha2";
             }
+            /* CLEAN THIS IF NO BUGS PERSIST 
             else if (comboBoxHashMode.Text == "TIGER-192")
             {
                 sfd_saveHash.Title = "Save TIGER-192 hash";
@@ -294,15 +295,15 @@ namespace CheckMate
                 sfd_saveHash.Title = "Save WHIRLPOOL hash";
                 sfd_saveHash.Filter = "WHIRLPOOL|*.wpool";
             }
+            */
 
             sfd_saveHash.FileName = fileName;
             sfd_saveHash.InitialDirectory = filePathDir;
 
             // Save File Dialog
-            // TODO: if file already exists - exception
             if (sfd_saveHash.ShowDialog() == DialogResult.OK)
             {
-                using (Stream s = File.Open(sfd_saveHash.FileName, FileMode.CreateNew))
+                using (Stream s = File.Open(sfd_saveHash.FileName, FileMode.CreateNew)) // TODO: if file already exists - exception
                 using (StreamWriter sw = new StreamWriter(s))
                 {
                     sw.Write(textBoxFileChecksum.Text);
