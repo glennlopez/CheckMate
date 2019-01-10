@@ -259,8 +259,18 @@ namespace CheckMate
         // Saving hash
         private void button1_Click_1(object sender, EventArgs e)
         {
-            string filePathDir = Path.GetDirectoryName(textBoxFileBrowser.Text);
-            string fileName = Path.GetFileNameWithoutExtension(textBoxFileBrowser.Text);
+            string filePathDir = "";
+            string fileName = "";
+            if (!(textBoxFileBrowser.Text == ""))
+            {
+                filePathDir = Path.GetDirectoryName(textBoxFileBrowser.Text);
+                fileName = Path.GetFileNameWithoutExtension(textBoxFileBrowser.Text);
+            }
+            else
+            {
+                // do this if textBoxFileBrowser.Text is empty
+            }
+
 
             //Save File Dialog Settings
             SaveFileDialog sfd_saveHash = new SaveFileDialog();
@@ -289,6 +299,7 @@ namespace CheckMate
             sfd_saveHash.InitialDirectory = filePathDir;
 
             // Save File Dialog
+            // TODO: if file already exists - exception
             if (sfd_saveHash.ShowDialog() == DialogResult.OK)
             {
                 using (Stream s = File.Open(sfd_saveHash.FileName, FileMode.CreateNew))
