@@ -105,9 +105,6 @@ namespace CheckMate
             long size;                  // Holds the size of the file we are hashing
             long totalBytesRead = 0;    // Keeps track of the total bytes read so far
 
-            // SHA256 Work
-            var SHA256FileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Read);
-            SHA256Hash = GetSHA256Checksum(SHA256FileStream);
 
             // MD5 Work
             using (Stream file = File.OpenRead(filePath))
@@ -135,6 +132,9 @@ namespace CheckMate
                 }
             }
 
+            // SHA256 Work
+            var SHA256FileStream = new FileStream(filePath, FileMode.OpenOrCreate, FileAccess.Read);
+            SHA256Hash = GetSHA256Checksum(SHA256FileStream);
         }
 
         // Helper method for converting byte array
