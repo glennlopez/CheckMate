@@ -175,7 +175,6 @@ namespace CheckMate
                 textBoxFileChecksum.Text = SHA256Hash;
             }
 
-
             // Set progress bar to 0
             progressBar1.Value = 0;
         }
@@ -215,10 +214,8 @@ namespace CheckMate
             {
                 // Do Nothing...
                 // Optional: alert user there is nothing in the text area
-            }
-            
+            }  
         }
-
 
         private void buttonFileBrowse_Click(object sender, EventArgs e)
         {
@@ -250,10 +247,6 @@ namespace CheckMate
                 // read file content and place it in "textBoxCompareWith"
                 textBoxCompareWith.Text = File.ReadAllText(ofd_fileForCompare.FileName);
             }
-
-            
-
-
         }
 
         // Saving hash
@@ -304,14 +297,11 @@ namespace CheckMate
                     }
                 }
             }
-            
-            
         }
 
         // Combobox selection
         private void comboBoxHashMode_SelectedIndexChanged(object sender, EventArgs e)
         {
-
             // MD5 Selected
             if (comboBoxHashMode.SelectedIndex == 0)
             {
@@ -323,7 +313,6 @@ namespace CheckMate
             {
                 textBoxFileChecksum.Text = SHA256Hash;
             }
-            
         }
     }
 }
