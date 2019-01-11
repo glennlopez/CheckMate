@@ -25,7 +25,6 @@ namespace CheckMate
         {
             InitializeComponent();
 
-
             // Default settings
             comboBoxHashMode.SelectedIndex = 1;
         }
@@ -183,10 +182,10 @@ namespace CheckMate
             }
             else
             {
-
+                // do nothing
             }
 
-            // Set progress bar to 0
+            // Set progress bar to 0 (background task is done)
             progressBar1.Value = 0;
         }
 
@@ -266,7 +265,7 @@ namespace CheckMate
                 }
                 else
                 {
-
+                    // do nothing
                 }
             }
         }

@@ -31,6 +31,18 @@ This checksum utility is only 30kb at most so there are no installation/setup fi
 
 You can view the source code to check for mallicious code and compile it yourself or use an [anti-virus](https://www.virustotal.com/#/home/upload) to check for you. 
 
+### Version Scheme
+**v1.2.3.4**
+
+1 - Major Version
+2 - Minor Version
+3 - Patch Version
+4 - Revision
+
+**v1.0.0.5** would mean v1.0.0 has had its fifth revision.
+**v1.0.1.3** would mean a patch was released and was revized for the 3rd time.
+**v1.1.0.0** would mean v1.0 has had a minor update
+
 ## How to use
 
 #### Generating/Calculating Checksum
