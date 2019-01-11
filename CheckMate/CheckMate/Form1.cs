@@ -175,6 +175,17 @@ namespace CheckMate
                 textBoxFileChecksum.Text = SHA256Hash;
             }
 
+            // Auto-validate hash file
+            if (!(textBoxCompareWith.Text == "") && !(textBoxFileChecksum.Text == ""))
+            {
+                // Validate after hash file is loaded
+                button1_Click(null, null);
+            }
+            else
+            {
+
+            }
+
             // Set progress bar to 0
             progressBar1.Value = 0;
         }
