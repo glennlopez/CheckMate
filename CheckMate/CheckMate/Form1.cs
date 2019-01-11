@@ -289,49 +289,24 @@ namespace CheckMate
             sfd_saveHash.InitialDirectory = filePathDir;
             sfd_saveHash.OverwritePrompt = true;
 
-        
-
-            
             // Save File Dialog
-            if (sfd_saveHash.ShowDialog() == DialogResult.OK)
+            if (textBoxFileChecksum.Text == "")
             {
-                using (StreamWriter newTask = new StreamWriter(sfd_saveHash.FileName, false))
-                //using (Stream s = File.Open(sfd_saveHash.FileName, FileMode.CreateNew)) // TODO: if file already exists - exception
-                //using (StreamWriter sw = new StreamWriter(s))
+                MessageBox.Show("Error: Theres no checksum to save.");
+            }
+            else
+            {
+                if (sfd_saveHash.ShowDialog() == DialogResult.OK)
                 {
-                    newTask.Write(textBoxFileChecksum.Text);
+                    using (StreamWriter newTask = new StreamWriter(sfd_saveHash.FileName, false))
+                    {
+                        newTask.Write(textBoxFileChecksum.Text);
+                    }
                 }
-                
-
             }
             
+            
         }
-
-        /* CLEAN THIS IF NO BUGS PERSIST
-        public void disableAll()
-        {
-            buttonCalculateChecksum.Enabled = false;
-            textBoxFileBrowser.Enabled = false;
-            buttonFileBrowse.Enabled = false;
-            textBoxFileChecksum.Enabled = false;
-            buttonSaveHash.Enabled = false;
-            textBoxCompareWith.Enabled = false;
-            buttonTXTBrowser.Enabled = false;
-            buttonCheck.Enabled = false;
-        }
-
-        public void enableAll()
-        {
-            buttonCalculateChecksum.Enabled = true;
-            textBoxFileBrowser.Enabled = true;
-            buttonFileBrowse.Enabled = true;
-            textBoxFileChecksum.Enabled = true;
-            buttonSaveHash.Enabled = true;
-            textBoxCompareWith.Enabled = true;
-            buttonTXTBrowser.Enabled = true;
-            buttonCheck.Enabled = true;
-        }
-        */
 
         // Combobox selection
         private void comboBoxHashMode_SelectedIndexChanged(object sender, EventArgs e)
