@@ -259,15 +259,14 @@ namespace CheckMate
                 textBoxCompareWith.Text = File.ReadAllText(ofd_fileForCompare.FileName);
 
                 // Auto-validate hash file
-                if (!(textBoxCompareWith.Text == ""))
+                if (!(textBoxCompareWith.Text == "") && !(textBoxFileChecksum.Text == ""))
                 {
                     // Validate after hash file is loaded
                     button1_Click(null,null);
                 }
                 else
                 {
-                    MessageBox.Show("Warning: You loaded an empty hash-file. " +
-                        "The file is most likely corrupt or is actually empty.");
+
                 }
             }
         }
