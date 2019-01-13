@@ -192,18 +192,9 @@ namespace CheckMate
         // Calculate Checksum
         private void buttonCalculateChecksum_Click(object sender, EventArgs e)
         {
-            // TODO: check if there is a filename.md5 or filename.sha
-            // if it exists in the same dir, paste the hash string to textBoxCompareWith
-            // and calculate the file's checksum, then auto "Valudate" for the user
 
-            // NOTE: alert the user that a filename.md5 or filename.sha was found
-            // and that the program will auto-validate the file after the checksum is calculated
-            // "Checksum file found!"
-            // "A checksum file for (FILE NAME) already exists in the same directory, would you like to auto-validate
-            // (FILE NAME)'s integrity?" 
-
-            //textBoxFileChecksum.Enabled = false;
-            ofd_fileForChecksum.Title = "Calculate Checksum";
+        //textBoxFileChecksum.Enabled = false;
+        ofd_fileForChecksum.Title = "Calculate Checksum";
 
             // Open the file dialog for the user if textbox is emptyFileBrowser
             if (textBoxFileBrowser.Text == "")
@@ -212,6 +203,35 @@ namespace CheckMate
                 {
                     textBoxFileBrowser.Text = ofd_fileForChecksum.FileName;
                 }
+            }
+
+            // Auto-validate: for MD5 file
+            string HashFileDir = Path.GetDirectoryName(ofd_fileForChecksum.FileName);
+            string HashFileName = Path.GetFileNameWithoutExtension(ofd_fileForChecksum.FileName);
+            if (File.Exists(HashFileDir + @"\" + HashFileName + ".md5"))
+            {
+                DialogResult autovalidate = MessageBox.Show(HashFileName + ".md5 " + "was found in the same directory as " + Path.GetFileName(ofd_fileForChecksum.FileName) + "."
+                    + " Would you like CheckMate to auto-validate " + Path.GetFileName(ofd_fileForChecksum.FileName) + "'s checksum" +
+                    " using the existing MD5 hash-file?",
+                    "Existing MD5 hash-file found!",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question);
+
+                if (autovalidate == System.Windows.Forms.DialogResult.Yes)
+                {
+                    comboBoxHashMode.SelectedIndex = 0;
+                    textBoxCompareWith.Text = File.ReadAllText(HashFileDir + @"\" + HashFileName + ".md5");
+                }
+                else
+                {
+                    //debug - remove this after
+                    MessageBox.Show("Selected: NO","debug msg");
+                }
+            }
+            else
+            {
+                //debug - remove this after
+                MessageBox.Show("HASH FILE NOT FOUND");
             }
 
             // Check if textbox is empty before running the checksum calculation
@@ -224,7 +244,10 @@ namespace CheckMate
             {
                 // Do Nothing...
                 // Optional: alert user there is nothing in the text area
-            }  
+            }
+
+
+
         }
 
         private void buttonFileBrowse_Click(object sender, EventArgs e)
@@ -268,6 +291,7 @@ namespace CheckMate
                     // do nothing
                 }
             }
+
         }
 
         // Saving hash
