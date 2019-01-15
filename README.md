@@ -44,6 +44,7 @@ You can view the source code to check for mallicious code and compile it yoursel
 **v1.1.0.0** would mean v1.0 has had a minor update
 
 ## How to use
+**Video:** https://www.youtube.com/watch?v=aMwy73Q--bY
 
 #### Generating/Calculating Checksum
 1. Click **[Get Hash]** button to open the File Dialog
